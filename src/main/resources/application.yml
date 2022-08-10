@@ -1,5 +1,10 @@
 server:
   port: 8125
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway
 
 spring:
   application:
@@ -9,6 +14,20 @@ spring:
       discovery:
         locator:
           enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: psi-user
+        uri: lb://psi-user
+        predicates:
+          - Path=/api/usuarios/**
+        filters:
+          - StripPrefix=2
+      - id: psi-auth
+        uri: lb://psi-auth
+        predicates:
+          - Path=/api/security/**
+        filters:
+          - StripPrefix=2
 
 eureka:
   client:
@@ -16,3 +35,11 @@ eureka:
       defaultZone: http://localhost:8671/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.uuid}}
+#management:
+#  endpoint:
+#    gateway:
+#      enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: gateway
