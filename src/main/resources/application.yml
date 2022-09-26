@@ -28,6 +28,15 @@ spring:
           - Path=/api/security/**
         filters:
           - StripPrefix=2
+      - id: psi-notes
+        uri: lb://psi-notes
+        predicates:
+          - Path=/api/notes/**
+        filters:
+          - StripPrefix=2
+  sleuth:
+    sampler:
+      probability: 1.0
 
 eureka:
   client:
