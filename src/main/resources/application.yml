@@ -48,12 +48,9 @@ spring:
       probability: 1.0
 
 eureka:
-  instance:
-    preferIpAddress: true
-    hostname: eureka-0
   client:
     service-url:
-      defaultZone: http://10.0.0.104:8761/eureka
+      defaultZone: http://localhost:8671/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.uuid}}
 
