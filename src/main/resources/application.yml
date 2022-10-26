@@ -43,6 +43,12 @@ spring:
           - Path=/api/notes/**
         filters:
           - StripPrefix=2
+      - id: api-docs
+        uri: lb://psi-gateway
+        predicates:
+          - Path=/v3/api-docs/**
+        filters:
+          - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
   sleuth:
     sampler:
       probability: 1.0

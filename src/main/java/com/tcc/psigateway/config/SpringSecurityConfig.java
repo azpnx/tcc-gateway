@@ -3,10 +3,13 @@ package com.tcc.psigateway.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.authentication.HttpBasicServerAuthenticationEntryPoint;
+import org.springframework.security.web.server.authentication.HttpStatusServerEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
@@ -23,6 +26,7 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityWebFilterChain configure(ServerHttpSecurity http){
         return http.authorizeExchange()
+                .pathMatchers("/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui/**", "/swagger-ui.html", "/webjars/**").permitAll()
                 .pathMatchers("/api/security/oauth/**").permitAll()
                 .pathMatchers(HttpMethod.POST,"/api/usuarios").permitAll()
                 .pathMatchers(HttpMethod.GET,"/api/usuarios/confirmar/**").permitAll()
