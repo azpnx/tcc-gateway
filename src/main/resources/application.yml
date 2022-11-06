@@ -37,6 +37,12 @@ spring:
           - Path=/api/security/**
         filters:
           - StripPrefix=2
+      - id: psi-consulta
+        uri: lb://psi-consulta
+        predicates:
+          - Path=/api/consulta/**
+        filters:
+          - StripPrefix=2
       - id: psi-notes
         uri: lb://psi-notes
         predicates:
