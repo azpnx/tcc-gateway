@@ -30,7 +30,7 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/security/oauth/**").permitAll()
                 .pathMatchers(HttpMethod.POST,"/api/usuarios").permitAll()
                 .pathMatchers(HttpMethod.GET,"/api/usuarios/confirmar/**").permitAll()
-                .pathMatchers(HttpMethod.GET,"/api/consulta/**", "/api/consulta/user/**", "/api/consulta/professional/**").permitAll()
+                .pathMatchers(HttpMethod.GET,"/api/consulta/**", "/api/consulta/teacher/**", "/api/consulta/professional/**").permitAll()
                 .pathMatchers(HttpMethod.GET,"/api/usuarios/allPatients", "/api/usuarios/allProfessionals", "/api/usuarios/allTeachers", "/api/usuarios/findByTeacher").permitAll()
                 .pathMatchers(HttpMethod.GET,"/api/usuarios/confirmar/**").hasAnyRole("ADMIN", "USER")
                 .pathMatchers(HttpMethod.PUT,  "/api/notes/**").permitAll()
