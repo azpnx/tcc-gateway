@@ -36,7 +36,7 @@ public class SpringSecurityConfig {
                 .pathMatchers(HttpMethod.GET,"/api/usuarios/confirmar/**").hasAnyRole("ADMIN", "USER")
                 .pathMatchers(HttpMethod.PUT,  "/api/notes/**", "/api/notes/feedback", "/api/notes/feedback/**").permitAll()
                 .pathMatchers(HttpMethod.GET,  "/api/notes/**", "/api/notes/feedback", "/api/notes/feedback/**").permitAll()
-                .pathMatchers(HttpMethod.POST,"/api/consulta/twilio/room/**", "/api/consulta/twilio/token/**/**").permitAll()
+                .pathMatchers(HttpMethod.POST,"/api/consulta/twilio/room/**", "/api/consulta/twilio/token/**").permitAll()
                 .anyExchange().authenticated()
                 .and().addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .csrf().disable()
