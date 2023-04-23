@@ -28,7 +28,7 @@ public class SpringSecurityConfig {
         return http.authorizeExchange()
                 .pathMatchers("/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui/**", "/swagger-ui.html", "/webjars/**").permitAll()
                 .pathMatchers("/api/security/oauth/**").permitAll()
-                .pathMatchers(HttpMethod.POST,"/api/usuarios", "/api/usuarios/resetPassword", "/api/usuarios/resetPassword").permitAll()
+                .pathMatchers(HttpMethod.POST,"/api/usuarios", "/api/usuarios/resetPassword", "/api/usuarios/resetPassword", "/api/consulta/twilio/room", "/api/consulta/twilio/token").permitAll()
                 .pathMatchers(HttpMethod.GET,"/api/usuarios/confirmar/**", "/api/usuarios/changePassword").permitAll()
                 .pathMatchers(HttpMethod.PUT,"/api/usuarios/updatePassword").permitAll()
                 .pathMatchers(HttpMethod.GET,"/api/consulta/**", "/api/consulta/professional/**").permitAll()
