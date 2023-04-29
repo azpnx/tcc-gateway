@@ -52,6 +52,9 @@ public class SpringSecurityConfig {
         corsConfig.addAllowedMethod(HttpMethod.GET);
         corsConfig.addAllowedMethod(HttpMethod.DELETE);
         corsConfig.setAllowedOrigins(Arrays.asList(FRONTEND_LOCALHOST, FRONTEND_STAGING, "https://35.247.228.233", "http://35.247.228.233"));
+        corsConfig.setAllowCredentials(true);
+        corsConfig.addExposedHeader("Authorization");
+
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig);
