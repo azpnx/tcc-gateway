@@ -40,6 +40,7 @@ public class SpringSecurityConfig {
                 .anyExchange().authenticated()
                 .and().addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .csrf().disable()
+                .cors().configurationSource(corsConfiguration()).and()
                 .build();
     }
 
