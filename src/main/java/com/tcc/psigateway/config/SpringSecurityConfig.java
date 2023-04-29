@@ -40,26 +40,27 @@ public class SpringSecurityConfig {
                 .anyExchange().authenticated()
                 .and().addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .csrf().disable()
-                .cors().disable()
-                .build();
+                .cors().configurationSource(corsConfiguration())
+                .and().build();
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfiguration() {
-//        CorsConfiguration corsConfig = new CorsConfiguration();
-//        corsConfig.applyPermitDefaultValues();
-//        corsConfig.addAllowedMethod(HttpMethod.PUT);
-//        corsConfig.addAllowedMethod(HttpMethod.POST);
-//        corsConfig.addAllowedMethod(HttpMethod.GET);
-//        corsConfig.addAllowedMethod(HttpMethod.DELETE);
-//        corsConfig.setAllowedOrigins(Arrays.asList(FRONTEND_LOCALHOST, FRONTEND_STAGING, "https://35.247.228.233", "http://35.247.228.233"));
-//        corsConfig.setAllowCredentials(true);
-//        corsConfig.addExposedHeader("Authorization");
-//
-//        UrlBasedCorsConfigurationSource source =
-//                new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", corsConfig);
-//        return source;
-//    }
+    @Bean
+    CorsConfigurationSource corsConfiguration() {
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.applyPermitDefaultValues();
+        corsConfig.addAllowedMethod(HttpMethod.PUT);
+        corsConfig.addAllowedMethod(HttpMethod.POST);
+        corsConfig.addAllowedMethod(HttpMethod.GET);
+        corsConfig.addAllowedMethod(HttpMethod.DELETE);
+        corsConfig.setAllowedOrigins(Arrays.asList(FRONTEND_LOCALHOST, FRONTEND_STAGING, "https://35.247.228.233", "http://35.247.228.233"));
+        corsConfig.setAllowCredentials(true);
+        corsConfig.addExposedHeader("Authorization");
+
+        UrlBasedCorsConfigurationSource source =
+                new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfig);
+        return source;
+    }
+
 
 }
